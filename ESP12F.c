@@ -1,5 +1,4 @@
 
-# ![Static Badge](https://img.shields.io/badge/Project_Code-red)
 
 /*
 Name: Shubham Anil Khangar
