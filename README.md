@@ -6,9 +6,9 @@ The project implements a web server on ESP8266 microcontrollers, enabling contro
 
 [![Static Badge](https://img.shields.io/badge/ESP12F_Code-blue)](ESP12F.c)
 
-[![Static Badge](https://img.shields.io/badge/User_WebPage-white)](UserWebPage.html)
+[![Static Badge](https://img.shields.io/badge/User_WebPage_HTML_Code-white)](UserWebPage.html)
 
-[![Static Badge](https://img.shields.io/badge/Logout_WebPage-green)](logout.html)
+[![Static Badge](https://img.shields.io/badge/Logout_WebPage_HTML_Code-green)](logout.html)
 
 
 # Programming Language
