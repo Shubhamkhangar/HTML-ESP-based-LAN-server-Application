@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>ESP Web Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            font-family: Arial;
+            display: inline-block;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            color: rgb(238, 18, 18);
+        }
+
+        body {
+            max-width: 600px;
+            margin: 0px auto;
+            padding-bottom: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 120px;
+            height: 68px
+        }
+
+        .switch input {
+            display: none
+        }
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 34px
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 52px;
+            width: 52px;
+            left: 8px;
+            bottom: 8px;
+            background-color: #fff;
+            -webkit-transition: .4s;
+            tr ansition: .4s;
+            border-radius: 68px
+        }
+
+        .butt {
+            color: red;
+            background-color: black;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(52px);
+            -ms-transform: translateX(52px);
+            transform: translateX(52px)
+        }
+    </style>
+</head>
+
+<!--body scope-------------------------------------------------------->
+
+<body>
+
+    <h2>ESP Web Server System</h2>
+
+    <p>LedBuiltIn-> <span id="state">%STATE%</span></p>
+    BuiltInLed: <input type="checkbox" id="myCheck">
+    <button onclick="check()">ON</button>
+    <button onclick="uncheck()">OFF</button>
+    <hr>
+
+    <p>LedGpio1-> <span id="state1">%STATE1%</span></p>
+    LedGpio1: <input type="checkbox" id="myCheck1">
+    <button onclick="check1()">ON</button>
+    <button onclick="uncheck1()">OFF</button>
+    <hr>
+
+    <p>sensor data-><span id="state2">%STATE2%</span></p>
+    <button onclick="refresh()">refresh</button>
+    <hr>
+    <br>
+    <button onclick="logoutButton()" class="butt">Logout</button>
+
+    <!--JS--------------------------------------------------------------------------------->
+    <script>
+        function refresh() {
+            var xhr = new XMLHttpRequest();
+
+            // Configure it to make a GET request to a server endpoint
+            xhr.open("GET", "/sensor", true);
+
+            // Set up a callback function to handle the response
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Handle the response from the server
+                    var responseData = xhr.responseText;
+                    console.log(responseData);
+                    document.getElementById("state2").innerHTML = "sensor";
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+
+
+
+
+        function logoutButton() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/logout", true);
+            xhr.send();
+            setTimeout(function() {
+                window.open("/logged-out", "_self");
+            }, 1000);
+        }
+
+        function check() {
+            document.getElementById("myCheck").checked = true;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/update?state=1", true);
+            document.getElementById("state").innerHTML = "ON";
+            xhr.send();
+        }
+
+        function uncheck() {
+            document.getElementById("myCheck").checked = false;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/update?state=0", true);
+            document.getElementById("state").innerHTML = "OFF";
+            xhr.send();
+        }
+
+        function check1() {
+            document.getElementById("myCheck1").checked = true;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/update?start=1", true);
+            document.getElementById("state1").innerHTML = "ON";
+            xhr.send();
+        }
+
+        function uncheck1() {
+            document.getElementById("myCheck1").checked = false;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/update?start=0", true);
+            document.getElementById("state1").innerHTML = "OFF";
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>
