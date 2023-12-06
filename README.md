@@ -9,7 +9,7 @@ The project implements a web server on ESP8266 microcontrollers, enabling contro
 ![Static Badge](https://img.shields.io/badge/ESP-12F-black)![Static Badge](https://img.shields.io/badge/NodeMCU-white)
 
 # Software
-![Static Badge](https://img.shields.io/badge/Arduino-IDE-green)![Static Badge](https://img.shields.io/badge/Visual_Studio-Code-blue)
+![Static Badge](https://img.shields.io/badge/Arduino_IDE-green)![Static Badge](https://img.shields.io/badge/Visual_Studio_Code-blue)
 
 
 
